@@ -107,6 +107,7 @@ fun whichRookThreatens(
     (kingX == rookX2 || kingY == rookY2) && (kingX != rookX1 && kingY != rookY1) -> 2
     else -> 3
 }
+}
 
 /**
  * Простая
