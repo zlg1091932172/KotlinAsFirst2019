@@ -75,7 +75,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+fun lengthInMeters(sagenes: Int , arshins: Int, vershoks: Int): Double {
     val x1: Int = sagenes
     val x2: Int = arshins
     val x3: Int = vershoks
@@ -96,7 +96,7 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
     val x2: Int = min
     val x3: Int = sec
 
-    return (x1 + x2/60.0 + x3/3600.0)*PI/180
+    return (x1 + x2 / 60.0 + x3/ 3600.0) * PI / 180
 }
 
 
@@ -107,11 +107,9 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double {
-    val x1 = 3.0
-    val x2 = 0.0
-    val x3 = 0.0
-    val x4 = 4.0
-    return sqrt(sqr(x1 - x2) + sqr(x4 - x3))
+    val x3 = x2 - x1
+    val y3 = y2 - y1
+    return sqrt(x3 * x3 + y3 * y3)
 }
 
 /**
@@ -154,10 +152,8 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  *
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double {
-    val x1: Int = initial
-    val x2: Int = percent
-    val x3: Double = (x1 * (100.0 + x2))
-    return x3.pow(3)
+    val x = 1 + percent.toDouble() / 100
+    return initial * x * x * x
 }
 
 /**
