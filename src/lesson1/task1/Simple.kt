@@ -67,7 +67,6 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
 }
 
 
-
 /**
  * Тривиальная
  *
@@ -75,14 +74,12 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int , arshins: Int, vershoks: Int): Double {
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
     val x1: Int = sagenes
     val x2: Int = arshins
     val x3: Int = vershoks
     return (((48.0 * x1) + (16.0 * x2) + x3) * 4.445) / 100.0
 }
-
-
 
 
 /**
@@ -96,7 +93,7 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
     val x2: Int = min
     val x3: Int = sec
 
-    return (x1 + x2 / 60.0 + x3/ 3600.0) * PI / 180
+    return (x1 + x2 / 60.0 + x3 / 3600.0) * PI / 180
 }
 
 
@@ -130,8 +127,7 @@ fun thirdDigit(number: Int): Int {
  * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
  * Определите время поезда в пути в минутах (в данном случае 216).
  */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int
-=TODO()/*{
+fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = TODO()/*{
     var x1: Int = hoursDepart
     var x2: Int = minutesDepart
     var x3: Int = hoursArrive
