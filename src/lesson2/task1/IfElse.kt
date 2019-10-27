@@ -65,11 +65,15 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = when {
-    (age % 10 == 1) && (age % 100 != 11) -> age.toString() + "год"
-    (age % 10 in 2..4) && (age % 100 !in 12..14) && (age !in 112..114) -> age.toString() + "года"
-    else -> age.toString() + "лет"
+fun ageDescription(age: Int): String {
+    return if (age % 100 in 10..20) "$age лет"
+    else when {
+        age % 10 == 1 -> "$age год"
+        age % 10 in 2..4 -> "$age года"
+        else -> "$age лет"
+    }
 }
+
 
 /**
  * Простая
@@ -83,10 +87,13 @@ fun timeForHalfWay(
     t2: Double, v2: Double,
     t3: Double, v3: Double
 ): Double {
-    return if (t1 * v1 >= t2 * v2 + t3 * v3) t1
-    else {
-        if (t3 * v3 >= t1 * v1 + t2 * v2) t3
-        else t1 + ((t1 * v1 + t2 * v2 + t3 * v3) / 2) / v2
+    val s = (v1 * t1 + v2 * t2 + v3 * t3) / 2
+    val s1 = v1 * t1
+    val s2 = v2 * t2
+    return when {
+        s1 > s -> s / v1
+        s1 + s2 > s -> (s - s1) / v2 + t1
+        else -> t1 + t2 + (s - s1 - s2) / v3
     }
 }
 
@@ -126,15 +133,17 @@ fun rookOrBishopThreatens(
     rookX: Int, rookY: Int,
     bishopX: Int, bishopY: Int
 ): Int {
-    val c = (kingY - bishopY) / (kingX - bishopX)
-    val b = abs(c)
+    val rook = (rookX == kingX || rookY == kingY)
+    val bishop = (abs(bishopX - kingX) == abs(bishopY - kingY))
     return when {
-        kingX != rookX && kingY != rookY && b != 1 -> 0
-        (kingX == rookX || kingY == rookY) && (b != 1) -> 1
-        b == 1 && (kingX != rookX && kingY != rookY) -> 2
+        !rook && !bishop -> 0
+        rook && !bishop -> 1
+        !rook && bishop -> 2
         else -> 3
     }
 }
+
+
 
 /**
  * Простая
@@ -145,7 +154,7 @@ fun rookOrBishopThreatens(
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val x: Double = max(a, b)
+    val x = max(a, b)
     val longestSide: Double = max(c, x)
     val y: Double = (a + b + c - longestSide) / 2
     return when {
@@ -165,17 +174,12 @@ fun triangleKind(a: Double, b: Double, c: Double): Int {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
-    return if (b < c) {
-        -1
-    } else if ((a <= c) && (c < b) && (b <= d)) {
-        b - c
-    } else if ((a <= c) && (d <= b)) {
-        d - c
-    } else if ((c <= a) && (b <= d)) {
-        b - a
-    } else if ((c <= a) && (a < d) && (d <= b)) {
-        d - a
-    } else -1
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = when {
+    (a >= c) && (a <= d) && (b <= d) -> b - a
+    (a < c) && (b <= d) && (b >= c) -> b - c
+    (a >= c) && (a <= d) && (b > d) -> d - a
+    (a < c) && (b > d) -> d - c
+    else -> -1
 }
+
 
