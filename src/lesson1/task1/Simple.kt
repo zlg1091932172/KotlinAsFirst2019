@@ -60,9 +60,9 @@ fun main() {
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
 fun seconds(hours: Int, minutes: Int, seconds: Int): Int {
-    val x1: Int = hours
-    val x2: Int = minutes
-    val x3: Int = seconds
+    val x1 = hours
+    val x2 = minutes
+    val x3 = seconds
     return (3600 * x1) + (60 * x2) + (x3)
 }
 
@@ -159,8 +159,8 @@ fun accountInThreeYears(initial: Int, percent: Int): Double {
  * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
 fun numberRevert(number: Int): Int {
-    val x1: Int = number
-    val x2: Int = x1 / 100
+
+    val x2: Int = number / 100
     val x3: Int = number % 10
     val x4: Int = number / 10 % 10
     return (x2 + (x4 * 10) + (x3 * 100))
