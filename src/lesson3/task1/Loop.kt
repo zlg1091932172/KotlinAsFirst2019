@@ -147,7 +147,8 @@ fun maxDivisor(n: Int): Int {
     if (n % 2 == 0) return 2
     if (isPrime(n)) return n
     var mind = 3
-    while (n % mind > 0) mind += 2
+    while (n % mind > 0)
+        mind += 2
     return mind
 }
 
