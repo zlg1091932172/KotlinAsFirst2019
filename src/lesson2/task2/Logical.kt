@@ -23,10 +23,10 @@ fun isNumberHappy(number: Int): Boolean {
     val n1 = number / 1000
     val n2 = number / 100 - n1 * 10
     val n3 = number / 10 - n2 * 10 - n1 * 100
-    val n4 = number % 10
-
+    val n4 = number - n1 * 1000
     return n1 + n2 == n3 + n4
 }
+
 
 /**
  * Простая
