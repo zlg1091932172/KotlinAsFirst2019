@@ -6,6 +6,7 @@ package lesson3.task1
 import lesson1.task1.sqr
 import kotlin.math.*
 
+
 /**
  * Пример
  *
@@ -122,31 +123,24 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var z = 2
-    return if (n % z == 0) {
-        z
-    } else {
-        z++
-        while (n % z != 0) {
-            z += 2
+    var x = n
+    for (k in 2..sqrt(n.toDouble()).toInt()) {
+        if (n % k == 0) {
+            x = k
+            break
         }
-        z
     }
+    return x
 }
+
 
 /**
  * Простая
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int {
-    if (n % 2 == 0) return 2
-    if (isPrime(n)) return n
-    var mind = 3
-    while (n % mind > 0)
-        mind += 2
-    return mind
-}
+fun maxDivisor(n: Int): Int = n / minDivisor(n)
+
 
 /**
  * Простая
@@ -199,13 +193,14 @@ fun squareBetweenExists(m: Int, n: Int): Boolean {
  */
 fun collatzSteps(x: Int): Int {
     var a = x
-    var k = 0
+    var count = 0
     while (a != 1) {
-        if (a % 2 == 0) a /= 2
-        else a = 3 * a + 1
-        k++
+        if (a % 2 == 0)
+            a /= 2
+        else a = a * 3 + 1
+        count++
     }
-    return k
+    return count
 }
 
 /**
@@ -239,6 +234,9 @@ fun sin(x: Double, eps: Double): Double {
  * Подумайте, как добиться более быстрой сходимости ряда при больших значениях x.
  * Использовать kotlin.math.cos и другие стандартные реализации функции косинуса в этой задаче запрещается.
  */
+fun helperFun(x: Double): Double = 1 - sqr(x)
+
+
 fun cos(x: Double, eps: Double): Double {
     val rem = x % (2 * PI)
     var number = 1.0
@@ -251,6 +249,7 @@ fun cos(x: Double, eps: Double): Double {
     }
     return number
 }
+
 
 /**
  * Средняя
@@ -292,7 +291,6 @@ fun isPalindrome(n: Int): Boolean {
     }
     return ans
 }
-
 
 /**
  * Средняя
