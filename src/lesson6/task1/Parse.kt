@@ -71,6 +71,7 @@ fun main() {
  */
 fun dateStrToDigit(str: String): String = TODO()
 
+
 /**
  * Средняя
  *
