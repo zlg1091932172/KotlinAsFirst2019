@@ -72,13 +72,13 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  */
 fun digitNumber(n: Int): Int {
     if (n == 0) return 1
-    var c = 0
+    var a = 0
     var num = n
     while (num != 0) {
-        c++
+        a++
         num /= 10
     }
-    return c
+    return a
 }
 
 /**
@@ -170,7 +170,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean {
     for (i in sqrt(m.toDouble()).toInt()..sqrt(n.toDouble()).toInt()) {
-        if ((i * i >= m) && (i * i <= n)) return true
+        if (sqr(i) in m..n) return true
     }
     return false
 }
@@ -234,7 +234,6 @@ fun sin(x: Double, eps: Double): Double {
  * Подумайте, как добиться более быстрой сходимости ряда при больших значениях x.
  * Использовать kotlin.math.cos и другие стандартные реализации функции косинуса в этой задаче запрещается.
  */
-fun helperFun(x: Double): Double = 1 - sqr(x)
 
 
 fun cos(x: Double, eps: Double): Double {
@@ -285,9 +284,9 @@ fun isPalindrome(n: Int): Boolean {
     while (n1 != 0) {
         n2 = n2 * 10 + n1 % 10
         n1 /= 10
+        ans = true
     }
     if (n == n2) {
-        ans = true
     }
     return ans
 }
