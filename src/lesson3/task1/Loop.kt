@@ -139,7 +139,7 @@ fun minDivisor(n: Int): Int {
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = n / minDivisor(n)
+fun maxDivisor(n: Int): Int = (n / minDivisor(n))
 
 
 /**
@@ -213,16 +213,16 @@ fun collatzSteps(x: Int): Int {
  * Использовать kotlin.math.sin и другие стандартные реализации функции синуса в этой задаче запрещается.
  */
 fun sin(x: Double, eps: Double): Double {
-    val rem = x % (2 * PI)
-    var number = rem
-    var n = 1
-    var seqMem = rem.pow(n * 2 + 1) / factorial(n * 2 + 1)
-    while (abs(seqMem) >= eps) {
-        number += seqMem * (-1.0).pow(n)
-        n += 1
-        seqMem *= sqr(rem) / (n * 2 * (n * 2 + 1))
+    val absX = x % (2 * PI)
+    var n: Double = absX
+    var sum = 0.0
+    var b = 2
+    while (abs(n) >= eps) {
+        sum += n
+        n = ((n * sqr(absX) ) / ((2 * b - 1) * (2 * b - 2)) * (-1))
+        b++
     }
-    return number
+    return sum
 }
 
 /**
@@ -237,16 +237,16 @@ fun sin(x: Double, eps: Double): Double {
 
 
 fun cos(x: Double, eps: Double): Double {
-    val rem = x % (2 * PI)
-    var number = 1.0
-    var n = 1
-    var seqMem = rem.pow(n * 2) / factorial(n * 2)
-    while (abs(seqMem) >= eps) {
-        number += seqMem * (-1.0).pow(n)
-        n += 1
-        seqMem *= sqr(rem) / (n * 2 * (n * 2 - 1))
+    val absX = x % (2 * PI)
+    var sum = 1.0
+    var n: Double = -sqr(absX) / 2
+    var b = 3
+    while (abs(n) >= eps) {
+        sum += n
+        n = ((n * sqr(absX )) / ((2 * b - 3) * (2 * b - 2)) * (-1))
+        b++
     }
-    return number
+    return sum
 }
 
 
@@ -259,12 +259,12 @@ fun cos(x: Double, eps: Double): Double {
  */
 fun revert(n: Int): Int {
     var x = n
-    var m = 0
+    var y = 0
     while (x > 0) {
-        m = m * 10 + x % 10
+        y = y * 10 + x % 10
         x /= 10
     }
-    return m
+    return y
 }
 
 
@@ -277,19 +277,8 @@ fun revert(n: Int): Int {
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean {
-    var n1 = n
-    var n2 = 0
-    var ans = false
-    while (n1 != 0) {
-        n2 = n2 * 10 + n1 % 10
-        n1 /= 10
-        ans = true
-    }
-    if (n == n2) {
-    }
-    return ans
-}
+fun isPalindrome(n: Int): Boolean = (n == revert(n))
+
 
 /**
  * Средняя

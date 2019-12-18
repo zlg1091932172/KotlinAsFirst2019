@@ -3,6 +3,7 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import lesson1.task1.sqr
 import kotlin.math.sqrt
 
 /**
@@ -118,7 +119,7 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
 fun abs(v: List<Double>): Double {
     var abs = 0.0
     for (i in v)
-        abs += i * i
+        abs += sqr(i)
     return sqrt(abs)
 }
 
@@ -129,8 +130,10 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    if (list.isEmpty()) return 0.0
-    return list.sum() / list.size
+    if (list.isEmpty()) {
+        return 0.0
+    } else
+        return (list.sum() / list.size)
 }
 
 
@@ -157,11 +160,11 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.
  */
 fun times(a: List<Int>, b: List<Int>): Int {
-    var c = 0
+    var x = 0
     for (i in a.indices) {
-        c += a[i] * b[i]
+        x += (a[i] * b[i])
     }
-    return c
+    return x
 }
 
 
